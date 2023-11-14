@@ -1,0 +1,88 @@
+{
+  "name": "vscode-fanyi-chengzi",
+  "displayName": "vscode-fanyi-chengzi",
+  "publisher": "vscodepluginerchengzi",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.84.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vscode-fanyi-chengzi.replace",
+        "title": "translation-chengzhi" 
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "vscode-fanyi-chengzi.replace",
+        "key": "ctrl+t",
+        "mac": "cmd+t",
+        "when": "editorTextFocus"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorTextFocus",
+          "command": "vscode-fanyi-chengzi.replace",
+          "group": "vscode-fanyi-chengzi"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Vscode  fanyi",
+      "type": "object",
+      "properties": {
+        "vscodeFanyi.youdaoApiname": {
+        "type": "string",
+        "description": "youdao appKey"
+        },
+        "vscodeFanyi.youdaoApikey": {
+        "type": "string",
+        "description": "youdao appSecret"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.2.1",
+    "@types/mocha": "^10.0.3",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.84.0",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
+    "@vscode/test-electron": "^2.3.6",
+    "eslint": "^8.52.0",
+    "glob": "^10.3.10",
+    "mocha": "^10.2.0",
+    "ts-loader": "^9.5.0",
+    "typescript": "^5.2.2",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "axios": "^1.6.1",
+    "crypto-js": "^4.2.0",
+    "querystring": "^0.2.1"
+  }
+}
